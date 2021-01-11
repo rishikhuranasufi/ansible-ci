@@ -7,6 +7,8 @@
   - name: Copying the demo file
     template: src=/etc/ansible/index.html dest=/var/www/html
               owner=apache group=apache mode=0644
+  - name: start the web service
+    service: name=httpd state=started
   - name: (Enable it on System Boot)
     service: name=httpd enabled=yes
     notify:
