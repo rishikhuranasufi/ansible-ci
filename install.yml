@@ -7,7 +7,7 @@
   - name: Copying the demo file
     template: src=/etc/ansible/index.html dest=/var/www/html
               owner=apache group=apache mode=0644
- - name: Ensure httpd service is running
+  - name: Ensure httpd service is running
       service:
         name: "{{item}}"
         state: started
