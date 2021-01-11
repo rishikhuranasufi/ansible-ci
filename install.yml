@@ -14,7 +14,7 @@
         enabled: yes
       with_items:
         - httpd
-      when: inventory_hostname == "storage"
+      #when: inventory_hostname == "storage"
   handlers:
     - name: start apache
       service: name=httpd state=started
