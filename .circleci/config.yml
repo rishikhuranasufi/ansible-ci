@@ -20,7 +20,8 @@ jobs:
         command: |
           whoami
           yum install wget -y
-          wget http://localhost/
+          wget http://localhost/index.html
+          cat index.html
 
 workflows:
   ansible-using-orbs:
