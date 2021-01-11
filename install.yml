@@ -7,12 +7,14 @@
   - name: Copying the demo file
     template: src=/etc/ansible/index.html dest=/var/www/html
               owner=apache group=apache mode=0644
-  - name: start the web service
-    service: name=httpd state=started
-  - name: (Enable it on System Boot)
-    service: name=httpd enabled=yes
-    notify:
-      - start apache
+ - name: Ensure httpd service is running
+      service:
+        name: "{{item}}"
+        state: started
+        enabled: yes
+      with_items:
+        - httpd
+      when: inventory_hostname == "storage"
   handlers:
     - name: start apache
       service: name=httpd state=started
