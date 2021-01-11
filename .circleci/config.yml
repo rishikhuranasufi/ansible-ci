@@ -21,7 +21,7 @@ jobs:
           whoami
           yum install wget -y
           curl http://localhost/index.html
-          cat index.html
+          #cat index.html
 
 workflows:
   ansible-using-orbs:
