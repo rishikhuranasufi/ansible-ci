@@ -1,0 +1,11 @@
+version: 2.1
+
+orbs:
+  ansible: orbss/ansible@0.2.3
+
+workflows:
+  ansible-using-orbs:
+    jobs:
+      - ansible/show-os-version
+      - ansible/ansible-playbook # checkout, build, test, and upload test results
+          
