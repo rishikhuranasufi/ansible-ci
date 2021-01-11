@@ -7,5 +7,5 @@ workflows:
   ansible-using-orbs:
     jobs:
       #- ansible/show-os-version
-      - ansible/ansible-playbook # checkout, build, test, and upload test results
+      - ansible # checkout, build, test, and upload test results
           
