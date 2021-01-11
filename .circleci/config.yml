@@ -2,10 +2,24 @@ version: 2.1
 
 orbs:
   ansible: orbss/ansible@0.2.3
+  
+jobs:
+  run-ansible:
+    working_directory: /tmp/ansible
+    executor:
+      name: ansible/centos7-ansible-yum
+    steps:
+    - checkout
+    - ansible/ansible-playbook
+    - run:
+        name: Hit Apache URL
+        command: |
+          export TERM=xterm
+          cowsay "hello world!"
 
 workflows:
   ansible-using-orbs:
     jobs:
       #- ansible/show-os-version
-      - ansible # checkout, build, test, and upload test results
+      - run-ansible # checkout, build, test, and upload test results
           
