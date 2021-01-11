@@ -14,8 +14,8 @@ jobs:
     - run:
         name: Hit Apache URL
         command: |
-          export TERM=xterm
-          cowsay "hello world!"
+          wget http://ansibleclient01.local
+          wget http://localhost/
 
 workflows:
   ansible-using-orbs:
