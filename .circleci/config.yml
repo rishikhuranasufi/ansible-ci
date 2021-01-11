@@ -20,7 +20,7 @@ jobs:
         command: |
           whoami
           yum install wget -y
-          wget http://localhost/index.html
+          curl http://localhost/index.html
           cat index.html
 
 workflows:
