@@ -3,14 +3,16 @@
   connection: local
   tasks:
   - name: Installing Latest version of Apache
-    yum: pkg=httpd state=latest
+    apt: apache2
+    state: latest    
   - name: Copying the demo file
     template: src=/etc/ansible/index.html dest=/var/www/html
               owner=apache group=apache mode=0644
   - name: Restart service httpd, in all cases
     service:
-       name: httpd
-       state: restarted
+       name: apache2
+       enabled: yes       
+       state: started
   handlers:
     - name: start apache
       service: name=httpd state=started
