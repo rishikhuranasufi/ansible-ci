@@ -19,7 +19,7 @@ jobs:
         name: Hit Apache URL
         command: |
           whoami
-          yum install wget -y
+          #yum install wget -y
           curl http://localhost/index.html
           #cat index.html
 
