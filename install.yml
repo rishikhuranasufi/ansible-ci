@@ -1,4 +1,6 @@
 ---
+- hosts: localhost
+  connection: local
   tasks:
   - name: Installing Latest version of Apache
     yum: pkg=httpd state=latest
@@ -11,8 +13,7 @@
       state: started
       enabled: yes
     with_items:
-      - httpd
-      - sshd
+      - httpd      
       #when: inventory_hostname == "storage"
   handlers:
     - name: start apache
