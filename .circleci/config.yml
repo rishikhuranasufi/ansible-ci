@@ -7,7 +7,7 @@ jobs:
   run-ansible:
     working_directory: /tmp/ansible
     executor:
-      name: ansible/centos7-ansible-yum
+      name: ansible/ubuntu18-ansible-apt
     steps:
     - checkout
     - run:
