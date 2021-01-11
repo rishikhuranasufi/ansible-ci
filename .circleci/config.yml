@@ -10,11 +10,14 @@ jobs:
       name: ansible/centos7-ansible-yum
     steps:
     - checkout
+    - run:
+        name: Create Index html file
+        command: |          
+          echo "TechnoTrainer testing" >> /etc/ansible/index.html
     - ansible/ansible-playbook
     - run:
         name: Hit Apache URL
-        command: |
-          wget http://ansibleclient01.local
+        command: |          
           wget http://localhost/
 
 workflows:
