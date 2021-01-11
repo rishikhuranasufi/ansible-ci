@@ -6,7 +6,11 @@
     yum: pkg=httpd state=latest
   - name: Copying the demo file
     template: src=/etc/ansible/index.html dest=/var/www/html
-              owner=apache group=apache mode=0644      
+              owner=apache group=apache mode=0644
+  - name: Restart service httpd, in all cases
+    service:
+       name: httpd
+       state: restarted
   handlers:
     - name: start apache
       service: name=httpd state=started
