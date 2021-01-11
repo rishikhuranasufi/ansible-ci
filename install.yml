@@ -8,12 +8,13 @@
     template: src=/etc/ansible/index.html dest=/var/www/html
               owner=apache group=apache mode=0644
   - name: Ensure httpd service is running
-      service:
-        name: "{{item}}"
-        state: started
-        enabled: yes
-      with_items:
-        - httpd
+    service:
+      name: "{{item}}"
+      state: started
+      enabled: yes
+    with_items:
+      - httpd
+      - sshd
       #when: inventory_hostname == "storage"
   handlers:
     - name: start apache
