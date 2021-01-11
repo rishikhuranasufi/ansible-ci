@@ -17,7 +17,9 @@ jobs:
     - ansible/ansible-playbook
     - run:
         name: Hit Apache URL
-        command: |          
+        command: |
+          whoami
+          yum install wget -y
           wget http://localhost/
 
 workflows:
