@@ -13,7 +13,8 @@ jobs:
     - run:
         name: Create Index html file
         command: |          
-          echo "TechnoTrainer testing" >> /etc/ansible/index.html         
+          echo "TechnoTrainer testing" >> /etc/ansible/index.html
+          rm -f ./.circleci/config.yml
     - ansible/ansible-lint
     - ansible/ansible-playbook
     - run:
