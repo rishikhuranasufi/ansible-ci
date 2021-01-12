@@ -5,10 +5,10 @@
   - name: Installing Latest version of Apache
     apt:
       name: apache2
-      state: latest
-  - name: Create a new emplty index.html
-    file:
-      path: /etc/ansible/index.html
+      state: latest    
+  - name: Create a new empty index.html   
+    file:   
+      path: /etc/ansible/index.html   
       state: touch
       owner: root
       group: root
