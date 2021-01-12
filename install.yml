@@ -3,16 +3,16 @@
   connection: local
   tasks:
   - name: Installing Latest version of Apache
-    apt: 
+    apt:
       name: apache2
-      state: latest    
+      state: latest
   - name: Copying the demo file
     template: src=/etc/ansible/index.html dest=/var/www/html
               owner=root group=root mode=0755
   - name: Restart service httpd, in all cases
     service:
        name: apache2
-       enabled: yes       
+       enabled: yes
        state: started
   handlers:
     - name: start apache
