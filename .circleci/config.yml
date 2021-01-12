@@ -2,30 +2,33 @@ version: 2.1
 
 orbs:
   ansible: orbss/ansible@0.2.3
-  
+
 jobs:
+  ansible-lint:
+  working_directory: /tmp/ansible
+    executor:
+      name: ansible/ubuntu18-ansible-apt
+    steps:
+    - checkout
+    - ansible/ansible-lint
+
   run-ansible:
     working_directory: /tmp/ansible
     executor:
       name: ansible/ubuntu18-ansible-apt
     steps:
-    - checkout
-    - run:
-        name: Create Index html file
-        command: |          
-          echo "TechnoTrainer testing" >> /etc/ansible/index.html
-          rm -f ./.circleci/config.yml
-    - ansible/ansible-lint
+    - checkout    
     - ansible/ansible-playbook
     - run:
-        name: Hit Apache URL
+        name: Validation of deployed Apache Server
         command: |
-          whoami
           curl http://localhost/index.html
 
 workflows:
   ansible-using-orbs:
     jobs:
-      #- ansible/show-os-version
-      - run-ansible # checkout, build, test, and upload test results
+      - ansible-lint
+      - run-ansible:
+          requires:
+            - ansible-lint
           

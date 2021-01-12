@@ -6,9 +6,21 @@
     apt:
       name: apache2
       state: latest
+  - name: Create a new emplty index.html
+    file:
+      path: /etc/ansible/index.html
+      state: touch
+      owner: root
+      group: root
+      mode: 0755
+  - name: add content to index.html file
+    lineinfile:
+    path: /etc/ansible/index.html
+    line: Hello, Ansible World !
   - name: Copying the demo file
     template: src=/etc/ansible/index.html dest=/var/www/html
               owner=root group=root mode=0755
+
   - name: Restart service httpd, in all cases
     service:
        name: apache2
