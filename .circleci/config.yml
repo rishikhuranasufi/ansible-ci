@@ -17,7 +17,7 @@ jobs:
     executor:
       name: ansible/ubuntu18-ansible-apt
     steps:
-    - checkout    
+    - checkout
     - ansible/ansible-playbook
     - run:
         name: Validation of deployed Apache Server
@@ -31,4 +31,3 @@ workflows:
       - run-ansible:
           requires:
             - ansible-lint
-          
