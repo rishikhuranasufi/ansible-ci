@@ -5,10 +5,10 @@
   - name: Installing Latest version of Apache
     apt:
       name: apache2
-      state: latest    
-  - name: Create a new empty index.html   
-    file:   
-      path: /etc/ansible/index.html   
+      state: latest
+  - name: Create a new empty index.html
+    file:
+      path: /etc/ansible/index.html
       state: touch
       owner: root
       group: root
@@ -16,7 +16,7 @@
   - name: add content to index.html file
     lineinfile:
       path: /etc/ansible/index.html
-      line: Hello, Ansible World !
+      line: Hello Participants, Ansible World !
   - name: Copying the demo file
     template: src=/etc/ansible/index.html dest=/var/www/html
               owner=root group=root mode=0755
@@ -26,6 +26,3 @@
        name: apache2
        enabled: yes
        state: started
-  handlers:
-    - name: start apache
-      service: name=httpd state=started
