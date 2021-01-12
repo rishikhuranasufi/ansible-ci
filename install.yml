@@ -15,8 +15,8 @@
       mode: 0755
   - name: add content to index.html file
     lineinfile:
-    path: /etc/ansible/index.html
-    line: Hello, Ansible World !
+      path: /etc/ansible/index.html
+      line: Hello, Ansible World !
   - name: Copying the demo file
     template: src=/etc/ansible/index.html dest=/var/www/html
               owner=root group=root mode=0755
