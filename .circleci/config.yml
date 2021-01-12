@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   ansible-lint:
-  working_directory: /tmp/ansible
+    working_directory: /tmp/ansible
     executor:
       name: ansible/ubuntu18-ansible-apt
     steps:
