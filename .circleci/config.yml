@@ -10,6 +10,7 @@ jobs:
       name: ansible/ubuntu18-ansible-apt
     steps:
     - checkout
+    - ansible/ansible-lint
 
   run-ansible:
     working_directory: /tmp/ansible
@@ -17,6 +18,11 @@ jobs:
       name: ansible/ubuntu18-ansible-apt
     steps:
     - checkout
+    - ansible/ansible-playbook
+    - run:
+        name: Validation of deployed Apache Server
+        command: |
+          curl http://localhost/index.html
 
 workflows:
   ansible-using-orbs:
