@@ -27,5 +27,5 @@ workflows:
   ansible-using-orbs:
     jobs:
       #- ansible-lint
-      - run-ansible:
+      - run-ansible
 
