@@ -22,7 +22,7 @@ jobs:
     - checkout
     #- run: sudo apt-get update -y && sudo apt-get install -y python3-apt && sudo pip install --upgrade pip
     - ansible-playbook/install
-        version: "2.7.4"
+      version: "2.7.4"
     - ansible-playbook/playbook:
         playbook: apache-server.yml
     - run:
