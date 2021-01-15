@@ -9,11 +9,11 @@ jobs:
     working_directory: /tmp/ansible
     executor:
       name: ansible-playbook/default
-      python-version: "2.7.15"
+      python-version: "3.6.3"
       #debian-release: "rc"
     steps:
     - checkout
-    - run: sudo apt-get update -y && sudo sudo apt-get install python-distutils-extra && sudo pip install --upgrade pip && sudo pip install python-apt
+    - run: sudo apt-get update -y && sudo pip install --upgrade pip && sudo pip install python-apt
     - ansible-playbook/install:
         version: "2.7.4"
     - run: sudo pip list
