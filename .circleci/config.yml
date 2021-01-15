@@ -21,7 +21,7 @@ jobs:
     steps:
     - checkout
     - run: sudo apt-get update -y && sudo apt-get install -y python3-apt
-    - ansible-playbook/install    
+    - ansible-playbook/install
     - ansible-playbook/playbook:
         playbook: apache-server.yml
     - run:
