@@ -20,6 +20,7 @@ jobs:
     steps:
     - checkout
     - ansible-playbook/install
+    - run: /usr/local/bin/python -m pip install --upgrade pip
     - ansible-playbook/playbook:
         playbook: apache-server.yml
     - run:
