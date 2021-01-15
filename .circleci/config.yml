@@ -9,8 +9,8 @@ jobs:
     working_directory: /tmp/ansible
     executor:
       name: ansible-playbook/default
-      python-version: "2.7.15"
-      debian-release: "node"
+      python-version: "rc"
+      #debian-release: "rc"
     steps:
     - checkout
     #- run: sudo su && whoami && apt-get update -y && apt-get install -y python-apt
