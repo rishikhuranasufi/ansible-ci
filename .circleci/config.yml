@@ -16,7 +16,8 @@ jobs:
   run-ansible:
     working_directory: /tmp/ansible
     executor:
-      docker: true
+      debian-release: stretch    
+      python-version: '2.7'
     steps:
     - checkout
     - ansible-playbook/playbook:
