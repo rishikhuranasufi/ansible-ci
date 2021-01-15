@@ -15,8 +15,6 @@ jobs:
 
   run-ansible:
     working_directory: /tmp/ansible
-    executor:
-      name: default
     steps:
     - checkout
     - ansible-playbook/playbook:
