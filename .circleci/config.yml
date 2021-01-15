@@ -1,20 +1,23 @@
 version: 2.1
 
+orbs:
+  ansible: orbss/ansible@0.2.3
+
 jobs:
   ansible-lint:
     working_directory: /tmp/ansible
-    docker:
-      - image: buildpack-deps:trusty
+    executor:
+      name: ansible/ubuntu18-ansible-apt
     steps:
     - checkout
 
   run-ansible:
     working_directory: /tmp/ansible
-    docker:
-      - image: buildpack-deps:trusty    
+    executor:
+      name: ansible/ubuntu18-ansible-apt
     steps:
     - checkout
-   
+
 workflows:
   ansible-using-orbs:
     jobs:
