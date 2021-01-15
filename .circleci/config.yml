@@ -9,7 +9,7 @@ jobs:
     working_directory: /tmp/ansible
     executor:
       name: ansible-playbook/default
-      python-version: "rc"
+      python-version: "2.7.15"
       #debian-release: "rc"
     steps:
     - checkout
