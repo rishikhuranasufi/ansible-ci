@@ -5,20 +5,12 @@ orbs:
   ansible-playbook: orbss/ansible-playbook@0.0.5
 
 jobs:
-  ansible-lint:
-    working_directory: /tmp/ansible
-    executor:
-      name: ansible/ubuntu18-ansible-apt
-    steps:
-    - checkout
-    - ansible/ansible-lint
-
   run-ansible:
     working_directory: /tmp/ansible
     executor:
       name: ansible-playbook/default
       python-version: "2.7.15"
-      debian-release: "browsers"
+      debian-release: "jessie-browsers"
     steps:
     - checkout
     #- run: sudo su && whoami && apt-get update -y && apt-get install -y python-apt
@@ -34,7 +26,6 @@ jobs:
 workflows:
   ansible-using-orbs:
     jobs:
-      - ansible-lint
+      #- ansible-lint
       - run-ansible:
-          requires:
-            - ansible-lint
+
