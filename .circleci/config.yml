@@ -3,11 +3,15 @@ version: 2.1
 jobs:
   ansible-lint:
     working_directory: /tmp/ansible
+    docker:
+      - image: buildpack-deps:trusty
     steps:
     - checkout
 
   run-ansible:
     working_directory: /tmp/ansible
+    docker:
+      - image: buildpack-deps:trusty    
     steps:
     - checkout
    
