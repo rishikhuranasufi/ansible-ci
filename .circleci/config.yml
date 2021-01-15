@@ -17,7 +17,7 @@ jobs:
     working_directory: /tmp/ansible
     executor:
       name: ansible-playbook/default
-        python-version: "3.0"
+      python-version: "3.0"
     steps:
     - checkout
     - ansible-playbook/install
