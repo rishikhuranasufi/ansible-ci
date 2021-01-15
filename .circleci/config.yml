@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   ansible: orbss/ansible@0.2.3
+  ansible-playbook: orbss/ansible-playbook@0.0.5
 
 jobs:
   ansible-lint:
@@ -15,10 +16,11 @@ jobs:
   run-ansible:
     working_directory: /tmp/ansible
     executor:
-      name: ansible/ubuntu18-ansible-apt
+      name: default
     steps:
     - checkout
-    - ansible/ansible-playbook
+    - ansible-playbook/playbook:
+        playbook: apache-server.yml
     - run:
         name: Validation of deployed Apache Server
         command: |
