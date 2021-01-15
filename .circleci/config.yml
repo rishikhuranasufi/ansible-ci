@@ -20,7 +20,7 @@ jobs:
       #python-version: "3.6.4"
     steps:
     - checkout
-    - run: sudo su && whoami && apt-get update -y && apt-get install -y python-apt
+    #- run: sudo su && whoami && apt-get update -y && apt-get install -y python-apt
     - ansible-playbook/install:
         version: "2.7.4"
     - ansible-playbook/playbook:
