@@ -20,8 +20,8 @@ jobs:
       python-version: "3.6.4"
     steps:
     - checkout
-    - ansible-playbook/install
-    #- run: /usr/local/bin/python -m pip install --upgrade pip
+    - run: sudo apt-get update -y && sudo apt-get install -y python3-apt
+    - ansible-playbook/install    
     - ansible-playbook/playbook:
         playbook: apache-server.yml
     - run:
