@@ -17,11 +17,12 @@ jobs:
     working_directory: /tmp/ansible
     executor:
       name: ansible-playbook/default
-      python-version: "3.6.4"
+      #python-version: "3.6.4"
     steps:
     - checkout
-    - run: sudo apt-get update -y && sudo apt-get install -y python3-apt && sudo pip install --upgrade pip
+    #- run: sudo apt-get update -y && sudo apt-get install -y python3-apt && sudo pip install --upgrade pip
     - ansible-playbook/install
+        version: "2.7.4"
     - ansible-playbook/playbook:
         playbook: apache-server.yml
     - run:
