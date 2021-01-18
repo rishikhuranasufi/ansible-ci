@@ -71,6 +71,7 @@ workflows:
           requires:
             - ansible-lint
             - pause_workflow
+          context: slack-secrets
       - notify-using-custom-notify:
           requires:
             - run-ansible
