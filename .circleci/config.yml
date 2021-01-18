@@ -2,32 +2,58 @@ version: 2.1
 
 orbs:
   ansible: orbss/ansible@0.2.3
-  ansible-playbook: orbss/ansible-playbook@0.0.5
+  slack: circleci/slack@4.2.0
 
 jobs:
+  ansible-lint:
+    working_directory: /tmp/ansible
+    executor:
+      name: ansible/ubuntu18-ansible-apt
+    steps:
+    - checkout
+    - ansible/ansible-lint
+
   run-ansible:
     working_directory: /tmp/ansible
     executor:
-      name: ansible-playbook/default
-      python-version: "3.6.3"
-      #debian-release: "rc"
+      name: ansible/ubuntu18-ansible-apt
     steps:
     - checkout
-    #- run: sudo apt-get update -y && sudo pip install --upgrade pip && sudo pip install python-apt
-    - ansible-playbook/install:
-        version: "2.7.4"
-    - run: sudo apt-get update -y && sudo pip install --upgrade pip && sudo pip install python-apt
-    - run: sudo pip list
-    - ansible-playbook/playbook:
-        playbook: apache-server.yml
+    - ansible/ansible-playbook
     - run:
         name: Validation of deployed Apache Server
         command: |
           curl http://localhost/index.html
+  notify:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*Apache Server Deployed successfully*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
 
 workflows:
   ansible-using-orbs:
     jobs:
-      #- ansible-lint
-      - run-ansible
-
+      - ansible-lint
+      - run-ansible:
+          requires:
+            - ansible-lint
+      - notify:
+          requires:
+            - run-ansible
+          context: slack-secrets
