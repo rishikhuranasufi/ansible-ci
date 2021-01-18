@@ -29,10 +29,16 @@ workflows:
   ansible-using-orbs:
     jobs:
       - ansible-lint
+      - slack/on-hold:
+          context: slack-secrets
+          mentions: "@elon"
+          requires:
+            - ansible-lint      
       - pause_for_approval:
           requires:
             - ansible-lint
-          type: approval
+            - slack/on-hold
+          type: approval      
       - run-ansible:
           requires:
             - ansible-lint
