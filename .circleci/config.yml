@@ -29,11 +29,11 @@ workflows:
   ansible-using-orbs:
     jobs:
       - ansible-lint
-      - pause_workflow:
+      - pause_for_approval:
           requires:
             - ansible-lint
           type: approval
       - run-ansible:
           requires:
             - ansible-lint
-            - pause_workflow
+            - pause_for_approval
