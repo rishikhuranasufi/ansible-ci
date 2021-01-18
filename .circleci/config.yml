@@ -30,6 +30,7 @@ jobs:
         template: basic_fail_1
     - slack/notify:
         event: pass
+        mentions: '<@Elon Bar-Evan>'        
         template: success_tagged_deploy_1
 
   notify-using-custom-notify:
