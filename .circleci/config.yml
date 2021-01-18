@@ -27,7 +27,7 @@ jobs:
     - slack/notify:          
           event: pass
           template: basic_fail_1
-          mentions: @Elon Bar-Evan
+          mentions: "<@Elon Bar-Evan>"
 
   notify-using-custom-notify:
     docker:
