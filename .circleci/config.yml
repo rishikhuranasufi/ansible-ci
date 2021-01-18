@@ -50,10 +50,19 @@ workflows:
   ansible-using-orbs:
     jobs:
       - ansible-lint
+      - slack/on-hold:
+          context: slack-secrets
+          requires:
+            - ansible-lint
+      - pause_workflow:
+          requires:
+            - ansible-lint
+            - slack/on-hold
+          type: approval
       - run-ansible:
           requires:
             - ansible-lint
-      - notify:
+      - notify-using-custom-notify:
           requires:
             - run-ansible
           context: slack-secrets
