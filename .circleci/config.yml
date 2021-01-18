@@ -29,8 +29,7 @@ jobs:
         mentions: '<@Elon Bar-Evan>'
         template: basic_fail_1
     - slack/notify:
-        event: pass
-        mentions: '<@Elon Bar-Evan>'
+        event: pass        
         template: success_tagged_deploy_1
 
   notify-using-custom-notify:
@@ -67,6 +66,7 @@ workflows:
           requires:
             - ansible-lint
             - slack/on-hold
+                mentions: '<@Elon Bar-Evan>'
           type: approval
       - run-ansible:
           requires:
