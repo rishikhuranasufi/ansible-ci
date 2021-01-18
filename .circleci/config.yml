@@ -60,7 +60,7 @@ workflows:
       - ansible-lint
       - slack/on-hold:
           context: slack-secrets
-          mentions: '<@Elon Bar-Evan>'
+          mentions: "<@rishikhurana.sufi>"
           requires:
             - ansible-lint
       - pause_workflow:
