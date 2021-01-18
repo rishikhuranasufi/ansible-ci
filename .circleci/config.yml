@@ -31,9 +31,9 @@ workflows:
       - ansible-lint
       - pause_workflow:
           requires:
-            - ansible-lint            
+            - ansible-lint  
           type: approval
       - run-ansible:
           requires:
             - ansible-lint
-            - pause_workflow          
+            - pause_workflow
