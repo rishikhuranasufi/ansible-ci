@@ -60,13 +60,13 @@ workflows:
       - ansible-lint
       - slack/on-hold:
           context: slack-secrets
+          mentions: '<@Elon Bar-Evan>'
           requires:
             - ansible-lint
       - pause_workflow:
           requires:
             - ansible-lint
             - slack/on-hold
-                mentions: '<@Elon Bar-Evan>'
           type: approval
       - run-ansible:
           requires:
