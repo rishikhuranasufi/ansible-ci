@@ -24,7 +24,8 @@ jobs:
         name: Validation of deployed Apache Server
         command: |
           curl http://localhost/index.html
-  notify:
+
+  notify-using-custom-notify:
     docker:
       - image: 'cimg/base:stable'
     steps:
