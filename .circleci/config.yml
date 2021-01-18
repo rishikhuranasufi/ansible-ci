@@ -24,6 +24,10 @@ jobs:
         name: Validation of deployed Apache Server
         command: |
           curl http://localhost/index.html
+    - slack/notify:          
+          event: pass
+          template: basic_fail_1
+          mentions: @Elon Bar-Evan
 
   notify-using-custom-notify:
     docker:
@@ -63,7 +67,9 @@ workflows:
       - run-ansible:
           requires:
             - ansible-lint
+            - pause_workflow
       - notify-using-custom-notify:
           requires:
             - run-ansible
+            - pause_workflow
           context: slack-secrets
