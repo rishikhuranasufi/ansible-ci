@@ -25,9 +25,12 @@ jobs:
         command: |
           curl http://localhost/index.html
     - slack/notify:
-          event: pass
-          template: success_tagged_deploy_1
-          mentions: "<@Elon Bar-Evan>"
+        event: fail
+        mentions: '<@Elon Bar-Evan>'
+        template: basic_fail_1
+    - slack/notify:
+        event: pass
+        template: success_tagged_deploy_1
 
   notify-using-custom-notify:
     docker:
