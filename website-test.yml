@@ -3,24 +3,24 @@
   hosts: webservers
   become: yes
   become_user: root
-  
+
   tasks:
   - name: Check port 80 is listening to managed nodes
     wait_for:
       port: 80
       state: started
       timeout: 3
-      
+
   - name: Verify Apache is available remotely
     uri:
       url: http:// {{ ansible_host }}/index.html
     delegated_to: localhost
-  
+
   - name: Stat apache2
     stat:
       path: /usr/sbin/apache2
     register: i
-  
+
   - name: Fail if apache2 doesnt exists
     assert:
       that:
@@ -40,4 +40,3 @@
        - "a.stat.pw_name == 'root'"
       fail_msg: "index.html may doesnt exists or not owned by root"
       success_msg: "index.html exists with proper ownership"
-    
