@@ -19,7 +19,7 @@ jobs:
     - add_ssh_keys:
           fingerprints:
             - "b6:6c:11:1f:a3:ee:dd:a4:e3:d6:0e:99:e8:fe:ba:b9"
-    - checkout   
+    - checkout
 
 workflows:
   ansible-using-orbs:
@@ -39,9 +39,4 @@ workflows:
           requires:
             - ansible-lint
             - pause_for_approval
-          context: slack-secrets
-      - run-intergration-tests:
-          requires:
-            - ansible-lint
-            - run-ansible
           context: slack-secrets
