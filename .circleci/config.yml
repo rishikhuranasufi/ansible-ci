@@ -47,7 +47,7 @@ jobs:
         name: Execute test cases via control node
         command: |
           scp ./website-test.yml ubuntu@52.15.171.121:~/
-          ssh ubuntu@52.15.171.121 "ansible-playbook website-test.yml"
+          ssh ubuntu@52.15.171.121 "ansible-playbook website-test.yml -vvv"
     - slack/notify:
         event: fail
         mentions: "<@elon>"
