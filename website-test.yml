@@ -7,9 +7,9 @@
   tasks:
   - name: Check port 80 is listening to managed nodes
     wait_for:
-	  port: 80
-	  state: started
-	  timeout: 3
+      port: 80
+      state: started
+      timeout: 3
       
   - name: Verify Apache is available remotely
     uri:
