@@ -13,17 +13,21 @@ jobs:
     - checkout
     - ansible/ansible-lint
 
-  run-ansible:
-    working_directory: /tmp/ansible
-    executor:
-      name: ansible/ubuntu18-ansible-apt
+  run-ansible:  
+    machine: true
     steps:
+    - add_ssh_keys:
+          fingerprints:
+            - "b6:6c:11:1f:a3:ee:dd:a4:e3:d6:0e:99:e8:fe:ba:b9"
     - checkout
-    - ansible/ansible-playbook
     - run:
-        name: Validation of deployed Apache Server
+        name: Deploy Ansible playbook via control node
         command: |
-          curl http://localhost/index.html
+          ssh ec2-user@52.15.171.121 "ansible-playbook apache-install.yml"
+    - run:
+        name: Validation of deployed Apache Server over Managed node
+        command: |
+          curl http://18.191.197.137/index.html
     - slack/notify:
         event: fail
         mentions: "<@elon>"
