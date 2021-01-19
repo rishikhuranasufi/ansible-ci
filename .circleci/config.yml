@@ -13,7 +13,7 @@ jobs:
     - checkout
     - ansible/ansible-lint
 
-  run-ansible:  
+  run-ansible:
     machine: true
     steps:
     - add_ssh_keys:
