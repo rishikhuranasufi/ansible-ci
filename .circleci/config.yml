@@ -20,6 +20,22 @@ jobs:
           fingerprints:
             - "b6:6c:11:1f:a3:ee:dd:a4:e3:d6:0e:99:e8:fe:ba:b9"
     - checkout
+    - run:
+        name: Deploy Ansible playbook via control node
+        command: |
+          scp ./apache-install.yml ubuntu@52.15.171.121:~/
+          ssh ubuntu@52.15.171.121 "ansible-playbook apache-install.yml"
+    - run:
+        name: Validation of deployed Apache Server over Managed node
+        command: |
+          curl http://18.191.197.137/index.html
+    - slack/notify:
+        event: fail
+        mentions: "<@elon>"
+        template: basic_fail_1
+    - slack/notify:
+        event: pass
+        template: success_tagged_deploy_1    
 
 workflows:
   ansible-using-orbs:
