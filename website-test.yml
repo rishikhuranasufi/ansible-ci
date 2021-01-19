@@ -14,7 +14,7 @@
   - name: Verify Apache is available remotely
     uri:
       url: http:// {{ ansible_host }}/index.html
-    delegated_to: localhost
+    delegate_to: localhost
 
   - name: Stat apache2
     stat:
